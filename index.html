@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+	<title> Assignment 9: JSON </title>
+	<link rel = "stylesheet" type = "text/css" href = "main.css">
+</head>
+
+<body>
+
+	<h1>JSON</h1>
+
+	<h2> Serialized </h2>
+	<p id = "serialized"> </p>
+
+	<h2> User Friendly Display </h2>
+	<p id = "displaysong"> </p>
+
+	<script language="javascript">
+	// An array of JSON objects
+	var songlist = [
+		{ 
+			"title" : "Girls Just Want To Have Fun", 
+			"artist(s)" : ["Cyndi Lauper"],
+			"genre(s)" : ["Pop"],
+			"year" : "1983"
+		},
+		{
+			"title" : "Dancing Queen", 
+			"artist(s)" : ["ABBA"],
+			"genre(s)" : ["Disco", "Pop"],
+			"year" : "1976"
+		},
+		{
+			"title" : "You're The One That I Want", 
+			"artist(s)" : ["John Travolta", "Olivia Newton-John"],
+			"genre(s)" : ["Pop"],
+			"year" : "1978"
+		},
+		{
+			"title" : "I Wanna Dance with Somebody", 
+			"artist(s)" : ["Whitney Houston"],
+			"genre(s)" : ["Pop"],
+			"year" : "1987"
+		},
+		{
+			"title" : "Flashdance What A Feeling", 
+			"artist(s)" : ["Irene Cara"],
+			"genre(s)" : ["Disco", "Electronic"],
+			"year" : "1983"
+		},
+		{
+			"title" : "Top Of The World", 
+			"artist(s)" : ["Carpenters"],
+			"genre(s)" : ["Country", "Pop"],
+			"year" : "1972"
+		},
+		{
+			"title" : "Yesterday's Dream", 
+			"artist(s)" : ["Donna Cruz"],
+			"genre(s)" : ["Pop"],
+			"year" : "1968"
+		},
+		{
+			"title" : "You Are The Sunshine Of My Life", 
+			"artist(s)" : ["Stevie Wonder"],
+			"genre(s)" : ["Soul", "Pop"],
+			"year" : "1972"
+		},
+		{
+			"title" : "Greatest Love of All", 
+			"artist(s)" : ["Whitney Houston"],
+			"genre(s)" : ["R&B"],
+			"year" : "1985"
+		},
+		{
+			"title" : "I Have Nothing", 
+			"artist(s)" : ["Whitney Houston"],
+			"genre(s)" : ["R&B", "Pop", "Soul"],
+			"year" : "1991"
+		},
+		{
+			"title" : "True Colors", 
+			"artist(s)" : ["Cyndi Lauper"],
+			"genre(s)" : ["Pop"],
+			"year" : "1986"
+		}
+	];
+
+	// Serialize and display
+	var string_songlist = JSON.stringify(songlist);
+	document.getElementById("serialized").innerHTML = string_songlist;
+
+	// User friendly display
+	function displayFunc(index) {
+		document.write(songlist[index]["title"].bold() + "<br />" + "Artist: " + songlist[index]["artist(s)"] + "<br />" + "Genre: " + songlist[index]["genre(s)"] + "<br />" + "Released: " + songlist[index]["year"] + "<br /> <br />" );
+
+	}
+
+
+	for (i = 0; i < songlist.length; i++) {
+		displayFunc(i);
+	}
+	</script>
+
+	<h2> Filter Songs </h2>
+	<p> displayed in a blank page </p>
+	<form name="filterform">
+		<select id = "filternames">
+			<option value = "Pop"> Pop </option>
+			<option value = "Disco"> Disco </option>
+			<option value = "Electronic"> Electronic </option>
+			<option value = "Country"> Country </option>
+			<option value = "Soul"> Soul </option>
+			<option value = "R&B"> R&B </option>
+		</select>
+  		<button type="button" onclick="filtersongs()"> Filter </button>
+  	</form>
+
+  	<script language="javascript">
+
+  	// Filter data and only displays those data
+  	function filtersongs() {
+  		var selected = document.getElementById('filternames').value;
+
+  		for (i = 0; i < songlist.length; i++){
+  			if ( songlist[i]["genre(s)"][0] == selected || songlist[i]["genre(s)"][1] == selected || songlist[i]["genre(s)"][2] == selected ) {
+  				displayFunc(i);
+  			}
+  		}
+
+  	}
+
+  	</script>
+
+</form>
+
+
+
+</body>
+
+
+</html>

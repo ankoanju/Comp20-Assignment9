@@ -1,0 +1,17 @@
+body {
+	text-align: center;
+	background-color: #E2DBC0;
+}
+
+h1 {
+	font-size: 75px;
+	text-shadow: 4px 3px 0px #E9B44C;
+	font-family: Impact, Charcoal, sans-serif;
+	color: #9B2915;
+}
+
+h2 {
+	font-size: 28px;
+	font-family: Rockwell, Charcoal, sans-serif;
+	color: #9B2915;
+}
