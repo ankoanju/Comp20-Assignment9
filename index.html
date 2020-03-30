@@ -91,19 +91,25 @@
 	document.getElementById("serialized").innerHTML = string_songlist;
 
 	// User friendly display
+	// Parse JSON string into JavaScript object
+	songobjs = JSON.parse(string_songlist);
 	function displayFunc(index) {
-		document.write(songlist[index]["title"].bold() + "<br />" + "Artist: " + songlist[index]["artist(s)"] + "<br />" + "Genre: " + songlist[index]["genre(s)"] + "<br />" + "Released: " + songlist[index]["year"] + "<br /> <br />" );
+
+		// Using the JSON string also worked and produced the same result:
+		// document.write(songlist[index]["title"].bold() + "<br />" + "Artist: " + songlist[index]["artist(s)"] + "<br />" + "Genre: " + songlist[index]["genre(s)"] + "<br />" + "Released: " + songlist[index]["year"] + "<br /> <br />" );
+
+		document.write(songobjs[index]["title"].bold() + "<br />" + "Artist: " + songobjs[index]["artist(s)"] + "<br />" + "Genre: " + songobjs[index]["genre(s)"] + "<br />" + "Released: " + songobjs[index]["year"] + "<br /> <br />" );
 
 	}
 
 
-	for (i = 0; i < songlist.length; i++) {
+	for (i = 0; i < songobjs.length; i++) {
 		displayFunc(i);
 	}
+
 	</script>
 
 	<h2> Filter Songs </h2>
-	<p> displayed in a blank page </p>
 	<form name="filterform">
 		<select id = "filternames">
 			<option value = "Pop"> Pop </option>
@@ -121,19 +127,22 @@
   	// Filter data and only displays those data
   	function filtersongs() {
   		var selected = document.getElementById('filternames').value;
+  		var filteredsongl = "";
 
-  		for (i = 0; i < songlist.length; i++){
-  			if ( songlist[i]["genre(s)"][0] == selected || songlist[i]["genre(s)"][1] == selected || songlist[i]["genre(s)"][2] == selected ) {
-  				displayFunc(i);
+  		for (i = 0; i < songobjs.length; i++){
+  			if ( songobjs[i]["genre(s)"][0] == selected || songobjs[i]["genre(s)"][1] == selected || songobjs[i]["genre(s)"][2] == selected ) {
+
+  				filteredsongl += songobjs[i]["title"].bold() + "<br />" + "Artist: " + songobjs[i]["artist(s)"] + "<br />" + "Genre: " + songobjs[i]["genre(s)"] + "<br />" + "Released: " + songobjs[i]["year"] + "<br /> <br />";
   			}
   		}
+
+  		document.getElementById("displayfiltered").innerHTML = filteredsongl;
 
   	}
 
   	</script>
 
-</form>
-
+  	<p id = "displayfiltered"> </p>
 
 
 </body>
